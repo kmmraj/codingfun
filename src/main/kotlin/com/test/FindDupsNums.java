@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class FindDupsNums {
 
     public int findDuplicate(int[] nums) {
-        HashSet<Integer> set = new HashSet<Integer>();
+        HashSet<Integer> set = new HashSet<>();
         for (int item:nums) {
             if(set.contains(item)){
                 return item;

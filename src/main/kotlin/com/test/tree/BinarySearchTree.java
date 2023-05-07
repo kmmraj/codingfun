@@ -84,10 +84,10 @@ public class BinarySearchTree {
     }
 
     private boolean delete(final int value) {
-        return deleteIt(root, value);
+        return deleteIt(value);
     }
 
-    private boolean deleteIt(BSTNode currentNode, final int value) {
+    private boolean deleteIt(final int value) {
 
         // Find the node
 
@@ -104,18 +104,20 @@ public class BinarySearchTree {
         if (foundBSTNodes.length != 2) {
             System.out.println("Value " + value + " Not found");
         }
-        BSTNode prevNode = foundBSTNodes[0];
+        BSTNode parentNode = foundBSTNodes[0];
         BSTNode foundNode = foundBSTNodes[1];
 
         if (foundNode.left == null && foundNode.right == null) {
-            if (prevNode.left == foundNode) {
-                prevNode.left = null;
+            if (parentNode.left == foundNode) {
+                parentNode.left = null;
+                return true;
             }
 
-            if (prevNode.right == foundNode) {
-                prevNode.right = null;
+            if (parentNode.right == foundNode) {
+                parentNode.right = null;
+                return true;
             }
-            return true;
+
         }
 
 
@@ -138,12 +140,12 @@ public class BinarySearchTree {
 
 
         // One child case
-        if (prevNode.left == foundNode) {
-            prevNode.left = foundNode.left;
+        if (parentNode.left == foundNode) {
+            parentNode.left = foundNode.left;
         }
 
-        if (prevNode.right == foundNode) {
-            prevNode.right = foundNode.right;
+        if (parentNode.right == foundNode) {
+            parentNode.right = foundNode.right;
         }
         return true;
 
