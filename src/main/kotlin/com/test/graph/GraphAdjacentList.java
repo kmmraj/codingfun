@@ -121,13 +121,22 @@ public class GraphAdjacentList {
         graphAdjacentList.addDirectedEdge(2, 3);
         graphAdjacentList.addDirectedEdge(3, 4);
 
+        /**
+         *                 A --------- B
+         *                 |  \       / \
+         *                 |    \  /      \  -- E
+         *                 |  /   \     /
+         *                 C        \ D
+         *
+         */
+
         System.out.println(graphAdjacentList.toString());
         System.out.println(graphAdjacentList.breathFirstTraversal());
         graphAdjacentList.updateVisited();
         System.out.println(graphAdjacentList.depthFirstTraversal());
         graphAdjacentList.updateVisited();
 
-        System.out.println(graphAdjacentList.topologicalSort());
+        System.out.println("Topological Sort : " +graphAdjacentList.topologicalSort());
         graphAdjacentList.updateVisited();
         System.out.println(graphAdjacentList.bFS4SSSP(graphAdjacentList.graphNodeList.get(0)));
         graphAdjacentList.updateVisited();
