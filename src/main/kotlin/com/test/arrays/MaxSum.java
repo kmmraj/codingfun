@@ -3,7 +3,6 @@ package com.test.arrays;
 public class MaxSum {
 
     public String maxProduct(int[] intArray) {
-        // TODO
         int maxNumber = intArray[0];
         int secondMaxNumber = intArray[0];
 

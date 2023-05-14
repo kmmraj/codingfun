@@ -3,7 +3,6 @@ package com.test.arrays;
 public class FindTopTwoScores {
 
     public static int[] findTopTwoScores(int[] array){
-        // TODO
         int firstScore = Integer.MIN_VALUE;
         int secondScore = Integer.MIN_VALUE;
 

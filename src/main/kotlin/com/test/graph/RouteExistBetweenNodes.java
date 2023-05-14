@@ -42,7 +42,6 @@ public class RouteExistBetweenNodes {
         }
 
         //  Route Between Nodes
-        //TODO
         public boolean validPath(int source, int destination) {
             GraphNode sourceNode = nodeList.get(source);
             GraphNode targetNode = nodeList.get(destination);

@@ -3,7 +3,6 @@ package com.test.arrays;
 public class Permuntations {
 
     public boolean permutation(int[] array1, int[] array2){
-        // TODO
         if(array1.length != array2.length){
             return false;
         }

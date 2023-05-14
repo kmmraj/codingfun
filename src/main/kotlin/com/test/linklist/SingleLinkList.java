@@ -136,7 +136,6 @@ public class SingleLinkList {
     }
 
     public Node get(int index) {
-        //TODO
         if(index < 0 ){
             return null;
         }
@@ -153,7 +152,6 @@ public class SingleLinkList {
     }
 
     public boolean set(int index, int value) {
-        // TODO
         Node currentNode = get(index);
         if(currentNode == null){
             return false;
@@ -165,7 +163,6 @@ public class SingleLinkList {
 
     // 1 -> 2 -> 3 -> 4 -> 5 and you rotate by 2, the list should be modified to 3 -> 4 -> 5 -> 1 -> 2.
     public boolean rotate(int number) {
-        // TODO
         Node currentNode = head;
         Node prevNode = head;
         int counter =0;

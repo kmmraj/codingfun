@@ -27,7 +27,6 @@ public class ImplementMinHeightBST {
     }
 
     public static TreeNode createMinimalBST(int[] array) {
-        // TODO
         int middle = array.length / 2;
         TreeNode root = new TreeNode(array[middle]);
         int start = 0;

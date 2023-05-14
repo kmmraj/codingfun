@@ -1,7 +1,6 @@
 //
 package com.test.dynamicprogramming;
 
-// TODO:
 public class ImmutableRangeSumQuery {
     public ImmutableRangeSumQuery(int[][] matrix) {
 

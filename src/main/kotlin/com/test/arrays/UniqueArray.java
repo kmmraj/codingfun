@@ -6,7 +6,6 @@ import java.util.Set;
 public class UniqueArray {
 
     public boolean isUnique(int[] intArray) {
-        // TODO
         Set<Integer> uniqueSet = new HashSet<>();
         for(int indx=0; indx <= intArray.length -1 ; indx++){
             if(!uniqueSet.add(intArray[indx])) {

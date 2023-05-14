@@ -3,7 +3,6 @@ package com.test.arrays;
 public class FindUniqueElementsLength {
 
     public int removeDuplicates(int[] nums) {
-        //TODO
         int length = nums.length;
         for(int indx=1; indx<=nums.length-1; indx++) {
             if(nums[indx-1] == nums[indx]){
@@ -14,7 +13,6 @@ public class FindUniqueElementsLength {
     }
 
     public int removeDuplicatesArray(int[] nums) {
-        //TODO
         int length = 0;
         for(int indx=1; indx<=nums.length-1; indx++) {
 

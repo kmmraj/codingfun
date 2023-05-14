@@ -35,7 +35,6 @@ public class RotateImage {
 
 
    private static boolean rotateMatrix(int[][] matrix) {
-        // TODO
 
         int start = 0;
         int end = matrix.length-1;

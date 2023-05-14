@@ -6,7 +6,6 @@ import java.util.List;
 public class FindDuplicatesInArray {
 
     public static int[] removeDuplicates(int[] arr) {
-        //   TODO
 
         List<Integer> uniqueElementList = new ArrayList<>();
        // uniqueElement[0] = arr[0];

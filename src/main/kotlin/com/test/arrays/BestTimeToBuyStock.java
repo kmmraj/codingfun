@@ -127,8 +127,6 @@ public class BestTimeToBuyStock {
 
 
     public int maxProfitTest(int[] prices) {
-        // TODO
-
         if(prices.length ==0){
             return 0;
         }

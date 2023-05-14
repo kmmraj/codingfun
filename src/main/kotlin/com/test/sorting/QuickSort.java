@@ -2,6 +2,7 @@ package com.test.sorting;
 
 public class QuickSort {
 
+    // TODO : Check this QuickSort vs MergeSort
     public static void main(String[] args) {
         int[] numArray = {7, 11, 8, 35, 5, 23,-7};
         QuickSort.sort(numArray);
@@ -30,7 +31,7 @@ public class QuickSort {
         int newPivotIndex = leftIndex - 1;
 //        int newPivotIndex = leftIndex;
         for (int index = leftIndex; index <= rightIndex; index++) {
-            if (numArray[index] <= numArray[pivot]) {
+            if (numArray[index] <= numArray[rightIndex]) {
                 newPivotIndex++;
                 int temp = numArray[index];
                 numArray[index] = numArray[newPivotIndex];

@@ -3,7 +3,6 @@ package com.test.arrays;
 public class MiddleArray {
 
         public static int[] middle(int[] array) {
-            // TODO
             if(array.length <= 2){
                 return new int[] {0};
             }

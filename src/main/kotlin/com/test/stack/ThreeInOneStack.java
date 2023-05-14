@@ -57,12 +57,10 @@ public class ThreeInOneStack {
 //    // indexOfTop - this is helper method for push, pop and peek methods
 //
 //    private int indexOfTop(int stackNum) {
-//        // TODO
 //    }
 
     // push
     public void push(int stackNum, int value) {
-        // TODO
         Integer[] sizesArray = sizeMap.get(stackNum);
         Integer[] coordinatesArray = coordinatesMap.get(stackNum);
 
@@ -80,7 +78,6 @@ public class ThreeInOneStack {
 
     // pop
     public int pop(int stackNum) {
-        // TODO
         Integer[] sizesArray = sizeMap.get(stackNum);
         Integer[] coordinatesArray = coordinatesMap.get(stackNum);
 
