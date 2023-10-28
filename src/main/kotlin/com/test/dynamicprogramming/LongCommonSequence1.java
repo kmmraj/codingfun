@@ -14,6 +14,30 @@ public class LongCommonSequence1 {
         return solveItTopDownDp(text1,text2, t1Index,t2Index);
     }
 
+    private static int solveItRec(String text1, String text2){
+        return solveItRec(text1,text2,0,0);
+    }
+
+    private static int solveItRec(String text1, String text2, int index1, int index2) {
+        // BC
+        if(index1 == text1.length() || index2 == text2.length()){
+            return 0;
+        }
+
+        // In
+        if(text1.charAt(index1) == text2.charAt(index2)){
+            return 1 + solveItRec(text1,text2,index1+1,index2+1); // This is important ** 1+solveIt +**
+        }
+
+        // Hypo
+
+        int includeCurrent = solveItRec(text1,text2,index1+1,index2);
+        int skipCurrent = solveItRec(text1,text2,index1,index2+1);
+
+        return Math.max(includeCurrent,skipCurrent);
+
+    }
+
     private void dpMemoizationInit( int t1Index, int t2Index) {
         this.dpM = new int [t1Index+1] [t2Index+1];
 
@@ -233,14 +257,17 @@ public class LongCommonSequence1 {
     public static void main(String[] args) {
         String text1 = "abcde";
         String text2 = "ace";
-        LongCommonSequence1 commonSequence1 = new LongCommonSequence1();
-//        System.out.println(commonSequence1.longestCommonSubsequence(text1,text2));
-        String text3 = "mhunuzqrkzsnidwbun", text4 = "szulspmhwpazoxijwbq";
-//        System.out.println(commonSequence1.longestCommonSubsequence(text3,text4));
-//        System.out.println(commonSequence1.longestCommonSubsequence(text3,text4));
 
-        System.out.println("---- Print --------------------");
-        System.out.println(commonSequence1.printCommonSubsequence(text1,text2));
-        System.out.println(commonSequence1.printCommonSubsequence(text3,text4));
+        System.out.println("Longest CS is : " +LongCommonSequence1.solveItRec("abcde","ace"));
+        System.out.println("Longest CS is : " +LongCommonSequence1.solveItRec("abcdefgh","acegh"));
+//        LongCommonSequence1 commonSequence1 = new LongCommonSequence1();
+////        System.out.println(commonSequence1.longestCommonSubsequence(text1,text2));
+//        String text3 = "mhunuzqrkzsnidwbun", text4 = "szulspmhwpazoxijwbq";
+////        System.out.println(commonSequence1.longestCommonSubsequence(text3,text4));
+////        System.out.println(commonSequence1.longestCommonSubsequence(text3,text4));
+//
+//        System.out.println("---- Print --------------------");
+//        System.out.println(commonSequence1.printCommonSubsequence(text1,text2));
+//        System.out.println(commonSequence1.printCommonSubsequence(text3,text4));
     }
 }

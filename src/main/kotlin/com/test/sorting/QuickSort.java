@@ -28,11 +28,13 @@ public class QuickSort {
 
     private static int partition(int[] numArray, int leftIndex, int rightIndex) {
         int pivot = rightIndex;
-        int newPivotIndex = leftIndex - 1;
+        int newPivotIndex = leftIndex - 1; // Pivot index is always at leftIndex but one right
 //        int newPivotIndex = leftIndex;
         for (int index = leftIndex; index <= rightIndex; index++) {
-            if (numArray[index] <= numArray[rightIndex]) {
+            if (numArray[index] <= numArray[rightIndex]) { // compare with pivot
+                // Increment newPivotIndex
                 newPivotIndex++;
+                // Swap newPivotIndex with index( from leftIndex to rightIndex)
                 int temp = numArray[index];
                 numArray[index] = numArray[newPivotIndex];
                 numArray[newPivotIndex] = temp;

@@ -68,23 +68,23 @@ public class WeightedGraph {
 
     public static void main(String[] args) {
 
-        // WeightedGraph weightedGraph = Test_Case_Dijkstra_BellManFord_FloydMarshall();
-        WeightedNode nodeA = new WeightedNode("A", 0);
-        WeightedNode nodeB = new WeightedNode("B", 1);
-        WeightedNode nodeC = new WeightedNode("C", 2);
-        WeightedNode nodeD = new WeightedNode("D", 3);
-        WeightedNode nodeE = new WeightedNode("E", 4);
-
-        WeightedGraph weightedGraph = new WeightedGraph(List.of(nodeA, nodeB, nodeC, nodeD, nodeE));
-        weightedGraph.addWeightedUndirectedEdge(0, 1, 5);
-        weightedGraph.addWeightedUndirectedEdge(0, 2, 13);
-        weightedGraph.addWeightedUndirectedEdge(0, 4, 15);
-        weightedGraph.addWeightedUndirectedEdge(1, 2, 10);
-        weightedGraph.addWeightedUndirectedEdge(1, 3, 8);
-        weightedGraph.addWeightedUndirectedEdge(2, 3, 6);
-        weightedGraph.addWeightedUndirectedEdge(2, 4, 20);
-        // weightedGraph.kruskal();
-        weightedGraph.prims(nodeA);
+         WeightedGraph weightedGraph = Test_Case_Dijkstra_BellManFord_FloydMarshall();
+//        WeightedNode nodeA = new WeightedNode("A", 0);
+//        WeightedNode nodeB = new WeightedNode("B", 1);
+//        WeightedNode nodeC = new WeightedNode("C", 2);
+//        WeightedNode nodeD = new WeightedNode("D", 3);
+//        WeightedNode nodeE = new WeightedNode("E", 4);
+//
+//        WeightedGraph weightedGraph = new WeightedGraph(List.of(nodeA, nodeB, nodeC, nodeD, nodeE));
+//        weightedGraph.addWeightedUndirectedEdge(0, 1, 5);
+//        weightedGraph.addWeightedUndirectedEdge(0, 2, 13);
+//        weightedGraph.addWeightedUndirectedEdge(0, 4, 15);
+//        weightedGraph.addWeightedUndirectedEdge(1, 2, 10);
+//        weightedGraph.addWeightedUndirectedEdge(1, 3, 8);
+//        weightedGraph.addWeightedUndirectedEdge(2, 3, 6);
+//        weightedGraph.addWeightedUndirectedEdge(2, 4, 20);
+//        // weightedGraph.kruskal();
+//        weightedGraph.prims(nodeA);
 
     }
 
@@ -142,7 +142,7 @@ public class WeightedGraph {
         weightedGraph.addWeightedEdge(2, 4, 3);
         weightedGraph.addWeightedEdge(3, 2, 1);
 
-        //weightedGraph.dijkstra(nodeA);
+        weightedGraph.dijkstra(nodeA);
         // weightedGraph.bellmanFord(nodeA);
 //        weightedGraph.floydMarshall();
         return weightedGraph;

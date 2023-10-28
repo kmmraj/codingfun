@@ -69,7 +69,7 @@ public class MinHeightBST {
         System.out.println(validateBst(tree));
         System.out.println("Should be 4 Height: " + getTreeHeight(tree));
 
-        List<Integer> inOrder = inOrderTraverse(tree, new ArrayList<Integer>());
+        List<Integer> inOrder = inOrderTraverse(tree, new ArrayList<>());
         List<Integer> expected = Arrays.asList(1, 2, 5, 7, 10, 13, 14, 15, 22);
         System.out.println(expected.equals(inOrder));
     }
