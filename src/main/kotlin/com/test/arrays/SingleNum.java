@@ -1,27 +1,28 @@
 package com.test.arrays;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
+import java.util.*;
 
 public class SingleNum {
 
     public int singleNumber(int[] nums) {
-        HashMap<Integer,Integer> integerHashMap = new HashMap<>();
-        for (int idx = 0; idx < nums.length; idx++) {
-           if(integerHashMap.containsKey(nums[idx])){
-               int val = integerHashMap.get(nums[idx]);
-               integerHashMap.put(nums[idx],val+1);
-           } else {
-               integerHashMap.put(nums[idx],1);
-           }
+        Map<Integer,Integer> integerHashMap = new HashMap<>();
+        for (int num : nums) {
+            if (integerHashMap.containsKey(num)) {
+                int val = integerHashMap.get(num);
+                integerHashMap.put(num, val + 1);
+            } else {
+                integerHashMap.put(num, 1);
+            }
         }
 
-        for (int val: nums) {
-            if(integerHashMap.get(val) == 1)
-                return val;
-        }
-        return -1;
+       return integerHashMap
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue( Comparator.reverseOrder()))
+                .filter(integerEntry -> integerEntry.getValue() == 1 )
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(-1);
     }
 
     public static void main(String[] args) {

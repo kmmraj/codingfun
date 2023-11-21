@@ -12,12 +12,12 @@ fun firstNonRepeatingInt(intArray: IntArray): Int {
     intArray.forEach {
         val intValue = it
         if(distinctValueMap.containsKey(it)) {
-            var count = distinctValueMap.get(intValue)
+            val count = distinctValueMap[intValue]
             count?.let {
                 distinctValueMap.put(intValue,count+1)
             }
         } else {
-            distinctValueMap.put(intValue,1)
+            distinctValueMap[intValue] = 1
         }
     }
 
