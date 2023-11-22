@@ -17,7 +17,7 @@ public class ContentionExample {
         Counter counter = new Counter();
 
         Runnable incrementTask = () -> {
-            for (int i = 0; i < 100000; i++) {
+            for (int index = 0; index < 100_000; index++) {
                 counter.increment();
             }
         };

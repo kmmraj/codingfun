@@ -1,4 +1,4 @@
-package com.test.switchexpression;
+package com.test.newfeaturesofjava;
 
 public class SwitchExpressionWithYieldExample {
     enum Day {

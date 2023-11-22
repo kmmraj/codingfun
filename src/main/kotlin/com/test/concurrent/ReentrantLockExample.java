@@ -38,8 +38,8 @@ public class ReentrantLockExample {
     }
 
     static class CounterIncrementer implements Runnable {
-        private SharedResource sharedResource;
-        private String threadName;
+        private final SharedResource sharedResource;
+        private final String threadName;
 
         CounterIncrementer(SharedResource sharedResource, String threadName) {
             this.sharedResource = sharedResource;
@@ -52,7 +52,8 @@ public class ReentrantLockExample {
             for (int i = 0; i < 5; i++) {
                 sharedResource.increment();
             }
-            System.out.println(Thread.currentThread().getName() + " completed ");
+            System.out.println(this.threadName + " completed ");
+//            System.out.println(Thread.currentThread().getName() + " completed ");
         }
     }
 }
