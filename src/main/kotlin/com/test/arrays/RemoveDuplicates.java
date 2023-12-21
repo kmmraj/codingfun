@@ -59,7 +59,7 @@ public class RemoveDuplicates {
         //start pointer of new array
         int m = 1;
 
-        // count the time of duplicate numbers occurence
+        // count the time of duplicate numbers occurrence
         int count = 1;
 
         for(int i = 1; i < nums.length; ++i) {
@@ -74,6 +74,24 @@ public class RemoveDuplicates {
             }
         }
         return m;
+    }
+
+    class Solution {
+        public int removeDuplicates(int[] nums) {
+
+            if(nums.length < 2){
+                return nums.length;
+            }
+            int index = 2;
+            //[0,0,1,1,1,1,2,3,3]
+            for(int idx = 2; idx < nums.length;idx++){
+                if(nums[idx]!= nums[index-2]){
+                    nums[index] = nums[idx];
+                    index++;
+                }
+            }
+            return index;
+        }
     }
 
     public static void main(String[] args) {

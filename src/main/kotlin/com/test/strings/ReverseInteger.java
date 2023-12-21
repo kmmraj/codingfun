@@ -15,9 +15,23 @@ public class ReverseInteger {
         return (int)result;
     }
 
+    public int reverseUsingString(int x) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(x<0){
+            x = Math.abs(x);
+            stringBuilder.append(x);
+            return Integer.parseInt("-"+stringBuilder.reverse().toString());
+        } else {
+            stringBuilder.append(x);
+            return Integer.parseInt(stringBuilder.reverse().toString());
+        }
+    }
+
     public static void main(String[] args) {
         ReverseInteger integer = new ReverseInteger();
         System.out.println(integer.reverse(1534236469));
+        System.out.println(integer.reverseUsingString(1534236469));
         System.out.println(integer.reverse(1539));
+        System.out.println(integer.reverseUsingString(1539));
     }
 }

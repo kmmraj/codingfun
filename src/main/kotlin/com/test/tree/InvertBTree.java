@@ -1,12 +1,31 @@
 package com.test.tree;
-
+// https://leetcode.com/problems/invert-binary-tree/description?envType=study-plan-v2&envId=top-interview-150
 import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class InvertBTree {
     public static void invertBinaryTree(BinaryTree tree) {
         BinaryTree invertedBTree = new BinaryTree(tree.value);
         ///solveItInvertBT(tree, invertedBTree);
         solveItInvertBTCopy(tree);
+    }
+
+    public TreeNode invertTree(TreeNode root) {
+        // BC
+        if(root == null || (root.left == null && root.right == null)){
+            return root;
+        }
+        // H & I
+        TreeNode tempNode;
+        tempNode = root.left;
+        root.left = root.right;
+        root.right = tempNode;
+
+        invertTree(root.left);
+        invertTree(root.right);
+
+        return root;
+
     }
 
     private static void solveItInvertBT(BinaryTree tree, BinaryTree invertedTree) {
@@ -36,6 +55,8 @@ public class InvertBTree {
         solveItInvertBTCopy(tree.right);
     }
 
+
+
     static class BinaryTree {
         public int value;
         public BinaryTree left;
@@ -47,7 +68,49 @@ public class InvertBTree {
     }
 
     public static void main(String[] args) {
-        TestCase1();
+        //TestCase1();
+        TestCase4TreeNodes();
+    }
+
+    private static void TestCase4TreeNodes() {
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(7);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(9);
+
+        printTree(root);
+
+        System.out.println("Inverted Tree");
+        InvertBTree invertBTree = new InvertBTree();
+        invertBTree.invertTree(root);
+
+        printTree(root);
+
+    }
+
+    private static void printTree(TreeNode root) {
+       // Print the tree with BFS
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        queue.addLast(root);
+        int level = 0;
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            TreeNode node;
+            System.out.println();
+            System.out.print("Level "+ ++level + " :  ");
+            for (int idx = 0; idx < size; idx++){
+                node = queue.pollFirst();
+                System.out.print(node.val + " ");
+                if(node.left != null){
+                    queue.addLast(node.left);
+                }
+                if(node.right != null){
+                    queue.addLast(node.right);
+                }
+            }
+        }
+        System.out.println();
     }
 
     public static void TestCase1() {

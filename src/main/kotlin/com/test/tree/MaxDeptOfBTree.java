@@ -1,5 +1,8 @@
 package com.test.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MaxDeptOfBTree {
     public int maxDepth(TreeNode root) {
         if(root ==null){
@@ -23,6 +26,53 @@ public class MaxDeptOfBTree {
         return Math.min(leftDepth,rightDepth)+1;
     }
 
+    public int maxDepthWithBFS(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int maxDepth = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            maxDepth++;
+            for (int index = 0; index < queue.size(); index++) {
+                TreeNode tempNode = queue.remove();
+                if (tempNode.left != null) {
+                    queue.add(tempNode.left);
+                }
+                if (tempNode.right != null) {
+                    queue.add(tempNode.right);
+                }
+            }
+        }
+        return maxDepth;
+    }
+
+    public int minDepthWithBFS(TreeNode root) {
+        if(root == null) return 0;
+        int depth = 1;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+
+            int size = queue.size();
+            for(int index=0; index< size; index++){
+                TreeNode tempNode = queue.remove();
+                if(tempNode.left == null && tempNode.right == null){
+                    return depth;
+                }
+                if(tempNode.left != null) {
+                    queue.add(tempNode.left);
+                }
+                if(tempNode.right != null) {
+                    queue.add(tempNode.right);
+                }
+            }
+            depth++;
+        }
+        return depth;
+    }
+
 
 
 
@@ -41,6 +91,8 @@ public class MaxDeptOfBTree {
         MaxDeptOfBTree balancedBTree = new MaxDeptOfBTree();
         System.out.println(balancedBTree.maxDepth(ch1));
         System.out.println(balancedBTree.minDepth(ch1));
+        System.out.println(balancedBTree.maxDepthWithBFS(ch1));
+        System.out.println(balancedBTree.minDepthWithBFS(ch1));
 
     }
 }

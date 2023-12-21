@@ -2,8 +2,39 @@ package com.test.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MergeIntervals {
+
+
+    public int[][] merge(int[][] intervals) {
+        int n = intervals.length;
+        List<int[]> ans = new ArrayList<>(); // Create a list to store the merged intervals.
+        if (n == 0)
+            return intervals; // If there are no intervals to merge, return an empty list.
+
+        // Sort the intervals based on their start times.
+        // if start is same it will sort according to end time for the same.
+        java.util.Arrays.sort(intervals,
+                java.util.Comparator.<int[]>comparingInt(a -> a[0]).thenComparingInt(a -> a[1]));
+
+        ans.add(intervals[0]);
+
+        for (int i = 1; i < intervals.length; i++) {
+            // Check if the current interval's start time is greater than the end time
+            // of the last interval in the ans list. If so, it means there is no overlap,
+            // and we can add this interval to the answer.
+            if (intervals[i][0] > ans.getLast()[1]) {
+                ans.add(intervals[i]);
+            } else {
+                // it there's an overlap between the last interval in the ans list
+                //and the current interval, we update the end time of the last interval
+                //in the ans list to cover the entire merged interval
+                ans.getLast()[1] = Math.max(ans.getLast()[1], intervals[i][1]);
+            }
+        }
+        return ans.toArray(new int[0][0]); //final answer
+    }
 
     public int[][] mergeOverlappingIntervals(int[][] intervals) {
         // Write your code here.
@@ -95,7 +126,8 @@ public class MergeIntervals {
                         {3, 8},
                         {9, 10}
                 };
-        int[][] actual = new MergeIntervals().mergeOverlappingIntervals(intervals);
+        //int[][] actual = new MergeIntervals().mergeOverlappingIntervals(intervals);
+        int[][] actual = new MergeIntervals().merge(intervals);
         for (int i = 0; i < actual.length; i++) {
             for (int j = 0; j < actual[i].length; j++) {
                 System.out.println(expected[i][j] == actual[i][j]);

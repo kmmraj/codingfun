@@ -47,8 +47,8 @@ public class ThreeSum {
     }
 
     public static void main(String[] args) {
-//        List<Integer[]> resultList = ThreeSum.threeNumberSum(new int[] {12, 3, 1, 2, -6, 5, -8, 6}, 0);
-        List<Integer[]> resultList = ThreeSum.threeNumberSumWith2Prt(new int[] {12, 3, 1, 2, -6, 5, -8, 6}, 0);
+        List<Integer[]> resultList = ThreeSum.threeNumberSum(new int[] {12, 3, 1, 2, -6, 5, -8, 6}, 0);
+     //   List<Integer[]> resultList = ThreeSum.threeNumberSumWith2Prt(new int[] {12, 3, 1, 2, -6, 5, -8, 6}, 0);
         for (int idx = 0; idx < resultList.size(); idx++) {
             Integer[] intArray = resultList.get(idx);
             System.out.printf("[ ");

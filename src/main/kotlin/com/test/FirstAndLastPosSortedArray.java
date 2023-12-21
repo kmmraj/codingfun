@@ -1,8 +1,10 @@
 package com.test;
+// https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array
+import java.util.Arrays;
 
 public class FirstAndLastPosSortedArray {
 
-    public int[] searchRange(int[] nums, int target) {
+    public int[] searchRangeDNW(int[] nums, int target) {
         int left = 0;
         int right = nums.length-1;
         int[] result  = {-1,-1};
@@ -58,6 +60,128 @@ public class FirstAndLastPosSortedArray {
         if(nums[nums.length-1] == target)  result[1] = nums.length-1;
         return result;
 
+    }
+
+
+    public int[] searchRangeNewTry(int[] nums, int target) {
+
+        if(nums.length == 1 && nums[0] == target){
+            return new int [] {0, 0};
+        }
+        if(nums.length == 2 && nums[0] == target && nums[1] == target){
+            return new int [] {0, 1};
+        }
+        int left = 0, right = nums.length, mid = (right-1)/2;
+
+        return getMatchingIndex(nums,target,left,right,mid);
+
+        // return new int [] {-1, -1};
+    }
+
+    public int[] getMatchingIndex(int[] nums, int target, int left, int right, int mid){
+
+        System.out.println("nums is " + Arrays.toString(nums) +" target is " + target + " left is "+ left
+                + " right is " + right + " mid is " + mid );
+        while(left <right){
+            if(nums[mid] == target){
+                int match = mid;
+                // calculate the left index
+                // TODO : Fix the r,l,m values and skip the call if its a search(?)
+                right = mid;
+                left = 0;
+                mid = (right - left)/2;
+                int leftMatch = searchMatchingIndex(nums, target,left,right,mid);
+                // TODO : Fix the r,l,m values
+
+                // calculate the right index
+                right = nums.length;
+                left = match+1;
+                mid = (right - left)/2;
+                int rightMatch = searchMatchingIndex(nums, target,left,right,mid);
+
+                System.out.println("leftMatch is "+ leftMatch + " rightMatch is "+rightMatch);
+
+                if(leftMatch == -1 && rightMatch == -1){
+                    return new int[] {match,match};
+                } else if(leftMatch == -1){
+                    return new int[] {match,rightMatch};
+                } else {
+                    return new int[] {leftMatch, match};
+                }
+
+
+                // return match;
+            } else if(nums[mid] < target){
+                left = mid + 1;
+                mid = left + ((right - left)/2);
+                System.out.println("mid is less than target  left is "+ left + " right is " + right + " mid is " + mid );
+            } else {
+                right = mid == 1 ? mid : mid -1;
+                mid = (right - left) / 2;
+                System.out.println("mid is greater than target  left is "+ left + " right is " + right + " mid is " + mid );
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
+
+    public int searchMatchingIndex(int[] nums, int target, int left, int right, int mid){
+        while(left < right){
+            if(nums[mid] == target){
+                //int match = mid;
+                return mid;
+            } else if(nums[mid] < target){
+                left = mid + 1;
+                mid = left + ((right - left)/2);
+            } else {
+                right = mid -1;
+                mid = (right - left) / 2;
+            }
+        }
+        return -1;
+    }
+
+
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[2];
+
+        result[0] = findLeft(nums,target);
+        result[1] = findRight(nums,target);
+        return result;
+    }
+
+    int findLeft(int[] nums, int target){
+        int resultIndex = -1;
+        int left=0,right=nums.length-1;
+        while(left <= right){
+            int mid = (left+right)/2;
+            if(nums[mid] >= target){
+                right = mid - 1;
+            } else {
+                left = mid+1;
+            }
+            if(nums[mid] == target){
+                resultIndex = mid;
+            }
+        }
+        return resultIndex;
+    }
+
+    int findRight(int[] nums, int target){
+        int resultIndex = -1;
+        int left=0,right=nums.length-1;
+        while(left <= right){
+            int mid = (left+right)/2;
+            if(nums[mid] <= target){
+                left = mid+1;
+            } else {
+                right = mid - 1;
+            }
+            if(nums[mid] == target){
+                resultIndex = mid;
+            }
+        }
+        return resultIndex;
     }
 
     public static void main(String[] args) {

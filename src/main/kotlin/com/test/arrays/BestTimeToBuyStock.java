@@ -44,15 +44,15 @@ public class BestTimeToBuyStock {
 
 
     private int solveItKenadeAlgo(int[] prices) {
-
+//7,1,5,3,6,4
         if(prices.length ==0)
             return 0;
         int maxCurr =0;
         int maxSoFar =Integer.MIN_VALUE;
         for (int idxI = 1; idxI < prices.length ; idxI++) {
-            maxCurr+= prices[idxI]-prices[idxI-1];
-            maxCurr = Math.max(0, maxCurr);
-            maxSoFar = Math.max(maxCurr,maxSoFar);
+            maxCurr+= prices[idxI]-prices[idxI-1]; // -6, 4, 2,5,3
+            maxCurr = Math.max(0, maxCurr); // 0,4,2,5,3
+            maxSoFar = Math.max(maxCurr,maxSoFar); // 0,4,4,5,3
         }
         return maxSoFar == Integer.MIN_VALUE?0:maxSoFar;
     }
@@ -135,6 +135,8 @@ public class BestTimeToBuyStock {
 
 
         // int [] prices = {7,1,5,3,6,4};
+        // int [] prices = {7,6,4,3,1};
+        // int [] prices =
         for(int indx=1; indx<= prices.length-1; indx++){
             if(prices[indx] < minAmount){
                 minAmount = prices[indx];

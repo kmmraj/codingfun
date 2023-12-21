@@ -23,12 +23,12 @@ public class TwoNumSum {
     public static int[] twoNumberSumUsingHT(int[] array, int targetSum) {
         // Write your code here.
         HashSet<Integer> hashSet = new HashSet<>();
-        for (int idx = 0; idx < array.length; idx++) {
-            int neededValue= targetSum-array[idx];
-            if(hashSet.contains(neededValue)){
-                return new int[]{array[idx],neededValue};
-            }else {
-                hashSet.add(array[idx]);
+        for (int num : array) {
+            int neededValue = targetSum - num;
+            if (hashSet.contains(neededValue)) {
+                return new int[]{num, neededValue};
+            } else {
+                hashSet.add(num);
             }
         }
         return new int[0];
@@ -64,6 +64,23 @@ public class TwoNumSum {
            }
        }
        return new int[] {0};
+    }
+
+    // With offset method
+    public int[] twoSum(int[] numbers, int target) {
+
+        int[] arr = new int[2001 + 1];
+
+        for (int i = 0; i < numbers.length; i++) {
+            if (arr[ numbers[i] + 1000 ] > 0) return new int[] {arr[ numbers[i] + 1000 ], ++i};
+
+            int searchedValue = target - numbers[i] + 1000;
+            if (searchedValue <= 2001) {
+                arr[searchedValue] = i + 1;
+            }
+        }
+
+        return new int[2];
     }
 
     public static void main(String[] args) {
