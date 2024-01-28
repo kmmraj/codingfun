@@ -1,4 +1,29 @@
 package com.test.graph;
+//Adjacency lists are a common way to represent graphs in computer science.
+// They efficiently store information about which vertices (nodes) are connected by edges in a graph.
+//
+//Key Concepts:
+//
+//Graph: A collection of vertices (nodes) and edges that connect them, representing relationships or connections.
+//Vertices: Individual entities in the graph (e.g., people in a social network, cities on a map).
+//Edges: Connections between vertices (e.g., friendships, roads).
+//Adjacency List Structure:
+//
+//List of lists: Each vertex has its own list, storing the vertices it's directly connected to (its neighbors).
+//Sparse graphs: Adjacency lists are particularly efficient for graphs with relatively few edges compared to vertices.
+//Example:
+//
+//Consider this graph:
+//
+//A -- B
+//|    |
+//C -- D
+//Adjacency list representation:
+//
+//A: [B, C]
+//B: [A, D]
+//C: [A, D]
+//D: [B, C]
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,13 +1,72 @@
 package com.test.linklist;
 
+import com.test.ListNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 //https://www.algoexpert.io/questions/Sum%20of%20Linked%20Lists
 public class SumOfTwoLinkedList {
+
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        ListNode sumNodeHead = new ListNode(0, null);
+        ListNode sumNodeIter = sumNodeHead;
+        int carry = 0;
+
+        while (l1 != null && l2 != null) {
+            int tempSum = l1.val + l2.val + carry;
+            sumNodeIter.next = new ListNode(tempSum % 10);
+            carry = tempSum / 10;
+            sumNodeIter = sumNodeIter.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        while (l1 != null) {
+            // System.out.println("l1.val is " + l1.val + " carry is " + carry);
+            int tempSum = l1.val + carry;
+            sumNodeIter.next = new ListNode(tempSum % 10);
+            carry = tempSum / 10;
+            sumNodeIter = sumNodeIter.next;
+            l1 = l1.next;
+        }
+
+        while (l2 != null) {
+            // System.out.println("l2.val is " + l2.val + " carry is " + carry);
+            int tempSum = l2.val + carry;
+            sumNodeIter.next = new ListNode(tempSum % 10);
+            carry = tempSum / 10;
+            sumNodeIter = sumNodeIter.next;
+            l2 = l2.next;
+        }
+        if (carry > 0) {
+            sumNodeIter.next = new ListNode(carry % 10);
+            sumNodeIter = sumNodeIter.next;
+            carry = carry / 10;
+        }
+
+        return sumNodeHead.next;
+
+    }
     public static void main(String[] args) {
         TestCase1();
+
+        System.out.println(" Sum of Two Linked List addTwoNumbers(new ListNode(2), new ListNode(9)) " +
+                "should be 1 -> 1 and the result is "
+                + new SumOfTwoLinkedList().addTwoNumbers(new ListNode(2), new ListNode(9)));
+
+        System.out.println(" Sum of Two Linked List addTwoNumbers(new ListNode(2,new ListNode(5)), new ListNode(9)) " +
+                "should be 1 -> 6 and the result is "
+                + new SumOfTwoLinkedList().addTwoNumbers(new ListNode(2,new ListNode(5)), new ListNode(9)));
+
+        System.out.println(" Sum of Two Linked List addTwoNumbers(new ListNode(2,new ListNode(5)), new ListNode(9, new ListNode(9))) " +
+                "should be 1 -> 5 -> 1 and the result is "
+                + new SumOfTwoLinkedList().addTwoNumbers(new ListNode(2,new ListNode(5)), new ListNode(9, new ListNode(9))));
+
+
     }
 
     public static void TestCase1() {

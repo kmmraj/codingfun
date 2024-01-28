@@ -1,7 +1,8 @@
 package com.test.bitwise;
+
 // https://leetcode.com/problems/reverse-bits
 public class ReverseBits {
-//Reverse bits of a given 32 bits unsigned integer.
+    //Reverse bits of a given 32 bits unsigned integer.
 //
 //Note:
 //
@@ -32,11 +33,17 @@ public class ReverseBits {
 //
 //The input must be a binary string of length 32
     public int reverseBits(int num) {
+        System.out.println("Num is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         num = (((num & 0xffff0000) >>> 16) | ((num & 0x0000ffff) << 16)); // 1111 = f
+        System.out.println("Num after 16 bit swap is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         num = (((num & 0xff00ff00) >>> 8) | ((num & 0x00ff00ff) << 8));
+        System.out.println("Num after 8 bit swap is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         num = (((num & 0xf0f0f0f0) >>> 4) | ((num & 0x0f0f0f0f) << 4));
+        System.out.println("Num after 4 bit swap is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         num = (((num & 0xcccccccc) >>> 2) | ((num & 0x33333333) << 2)); // 1100 == c , 0011 = 3
+        System.out.println("Num after 2 bit swap is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         num = (((num & 0xaaaaaaaa) >>> 1) | ((num & 0x55555555) << 1)); // 1010 == a , 0101 = 5
+        System.out.println("Num after 1 bit swap is " + String.format("%32s", Integer.toBinaryString(num)).replace(' ', '0'));
         return num;
     }
 

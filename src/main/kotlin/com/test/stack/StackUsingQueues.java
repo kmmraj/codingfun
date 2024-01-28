@@ -1,23 +1,20 @@
 package com.test.stack;
 
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class StackUsingQueues {
 
-    Queue<Integer> queueOne;
-    Queue<Integer> queueTwo;
+    Deque<Integer> enq;
+    Deque<Integer> deq;
 
     public StackUsingQueues() {
-        queueOne = new LinkedList<Integer>();
-        queueTwo = new LinkedList<Integer>();
+        enq = new LinkedList<>();
+        deq = new LinkedList<>();
     }
 
-
-
-
     public void push(int item){
-        queueOne.add(item);
+        enq.add(item);
     }
 
     public int pop() {
@@ -25,22 +22,22 @@ public class StackUsingQueues {
     }
     private int pop(Boolean isPeekMode) {
         Integer lastValue = null;
-        while (!queueOne.isEmpty() && queueOne.size() > 1){
-            queueTwo.add(queueOne.remove());
+        while (!enq.isEmpty() && enq.size() > 1){
+            deq.add(enq.remove());
         }
-        if(queueOne.size() == 1){
+        if(enq.size() == 1){
             if(isPeekMode){
-                lastValue = queueOne.peek();
+                lastValue = enq.peek();
             } else {
-                lastValue = queueOne.remove();
+                lastValue = enq.remove();
             }
         }
 
 
-        if(queueOne.isEmpty()){
-            Queue<Integer> tempQueue = queueTwo;
-            queueTwo = queueOne;
-            queueOne = tempQueue;
+        if(enq.isEmpty()){
+            Deque<Integer> tempQueue = deq;
+            deq = enq;
+            enq = tempQueue;
         }
         return lastValue;
     }
@@ -50,11 +47,11 @@ public class StackUsingQueues {
     }
 
     public int size() {
-        return queueOne.size() ;
+        return enq.size() ;
     }
 
     public boolean empty() {
-        return queueOne.isEmpty();
+        return enq.isEmpty();
     }
 
     public static void main(String[] args) {

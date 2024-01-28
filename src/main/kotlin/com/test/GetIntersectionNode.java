@@ -1,6 +1,7 @@
 package com.test;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class GetIntersectionNode {
 
@@ -43,6 +44,30 @@ public class GetIntersectionNode {
 
     }
 
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        Set<ListNode> listNodeSet = new HashSet<>();
+        while (headA != null || headB != null) {
+            if (headA != null) {
+                if (listNodeSet.add(headA)) {
+                    headA = headA.next;
+                } else {
+                    return headA;
+                }
+            }
+
+            if (headB != null) {
+                if (listNodeSet.add(headB)) {
+                    headB = headB.next;
+                } else {
+                    return headB;
+                }
+            }
+
+        }
+        return null;
+
+    }
+
     public static void main(String[] args) {
 
         // list one
@@ -64,6 +89,20 @@ public class GetIntersectionNode {
         ListNode result = intersectionNode.getIntersectionNodeWithHashSet(l1,l6);
 
         System.out.println(result.val);
+
+
+        // list one
+        ListNode aN1 = new ListNode(1);
+        ListNode aN2 = new ListNode(2,aN1);
+        ListNode aN3 = new ListNode(3,aN2);
+
+        // list two
+        ListNode bN1 = new ListNode(11,aN2);
+        ListNode bN2 = new ListNode(12,bN1);
+        ListNode bN3 = new ListNode(13,bN2);
+
+        System.out.println(" Intersection should be at  aN2 (2) and result is " +intersectionNode.getIntersectionNode2(aN3,bN3).val);
+
 
 
 

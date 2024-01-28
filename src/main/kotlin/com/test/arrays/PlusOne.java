@@ -31,9 +31,30 @@ public class PlusOne {
        }
 
         return result;
+
     }
 
+    // Other solution - Option#2
+
     public int[] plusOne2(int[] digits) {
+        int[] result = new int[digits.length+1];
+        int carry = 1;
+        for(int index=digits.length-1; index >=0; index--){
+            int sum = carry + digits[index];
+            carry = sum / 10;
+            int value = sum % 10;
+            result[index+1]=value;
+        }
+        if(carry>0){
+            result[0] = carry;
+        } else {
+            return Arrays.copyOfRange(result,1,result.length);
+        }
+        return result;
+
+    }
+
+    public int[] plusOne3(int[] digits) {
 
 
         List<Integer> result = new ArrayList<>(digits.length+1);
