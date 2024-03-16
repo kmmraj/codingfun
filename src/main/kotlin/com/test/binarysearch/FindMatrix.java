@@ -35,6 +35,25 @@ import java.util.Arrays;
 public class FindMatrix {
 
 
+    public boolean searchMatrixTLC(int[][] matrix, int target) {
+        // Start from the top left corner
+        int row = 0, col = matrix[0].length - 1;
+        while (row < matrix.length && col >= 0) {
+            if(matrix[row][col] == target){
+                return true;
+            }
+
+            if(matrix[row][col] < target){
+                row++;
+            } else{
+                col--;
+            }
+        }
+        return false;
+
+    }
+
+
     public boolean searchMatrixFlatMatrix(int[][] matrix, int target) {
         int start =0, rows=matrix.length, cols = matrix[0].length;
         // Flat the Matrix

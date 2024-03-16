@@ -41,6 +41,38 @@ public class FindSuccessor {
         return array;
     }
 
+    // EPI Solution
+
+    public static BinaryTree findSuccessor(BinaryTree node) {
+        BinaryTree iter = node;
+        if (iter.right != null) {
+            //Find the leftmost element innode’s rightsubtree.
+            iter = iter.right;
+            while (iter.left != null) {
+                iter = iter.left;
+            }
+            return iter;
+
+        }
+         // Find the closest ancestor whose left subtree contains node.
+
+        // This loop continues to traverse up the tree (i.e., towards the root) as
+        // long as the current node is the right child of its parent.
+        // This is because if the current node is the right child of its parent,
+        // then all nodes in the parent's subtree have already been visited in the in-order traversal.
+        // **Once the loop finds a node that is the left child of its parent, it stops.**
+        // The parent of this node is the in-order successor of the original node.
+        // This is because in an in-order traversal, after visiting all nodes in the left subtree of a node
+        // and the node itself, we visit the node's right subtree.
+        // If the original node does not have a right subtree (which is the case we are considering here),
+        // the next node to be visited is the node's parent.
+        while (iter.parent != null && iter.parent.right == iter) {
+            iter = iter.parent;
+        }
+        // A return value of null means node does not have successor, i.e., it is
+        // the rightmost node in the tree.
+        return iter.parent;
+    }
 
 
     public static void main(String[] args) {

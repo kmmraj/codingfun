@@ -15,8 +15,8 @@ public class TreeNode {
         this.val = val;
     }
 
-    @Override
-    public String toString() {
-        return "("+ val + " -> L: "+ left + " R: "+ right + ")";
-    }
+//    @Override
+//    public String toString() {
+//        return "("+ val + " -> L: "+ left + " R: "+ right + ")";
+//    }
 }

@@ -16,6 +16,8 @@ public class TreeTraverse {
         return array;
     }
 
+
+
     public static List<Integer> preOrderTraverse(BST tree, List<Integer> array) {
         if (tree == null)
             return array;

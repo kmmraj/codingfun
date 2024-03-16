@@ -1,40 +1,65 @@
 package com.test.tree;
+// https://leetcode.com/problems/balanced-binary-tree/description/
 
+/**
+ * 110. Balanced Binary Tree
+ * Easy
+ * Given a binary tree, determine if it is
+ * height-balanced
+ * <p>
+ * Example 1:
+ * Input: root = [3,9,20,null,null,15,7]
+ * Output: true
+ * <p>
+ * Example 2:
+ * Input: root = [1,2,2,3,3,null,null,4,4]
+ * Output: false
+ * <p>
+ * Example 3:
+ * Input: root = []
+ * Output: true
+ * <p>
+ * <p>
+ * Constraints:
+ * <p>
+ * The number of nodes in the tree is in the range [0, 5000].
+ * -104 <= Node.val <= 104
+ */
 public class BalancedBTree {
 
     public boolean isBalanced(TreeNode root) {
 
-        BBStatus bbStatus= solveIt(root);
+        BBStatus bbStatus = solveIt(root);
         return bbStatus.treeBalanced;
     }
 
     private BBStatus solveIt(TreeNode root) {
 
         // BC
-        if(root == null){
-            return  new BBStatus(-1,true);
+        if (root == null) {
+            return new BBStatus(-1, true);
         }
 
         // Hypothesis & BC check  (extended BC)
         BBStatus leftStatus = solveIt(root.left);
-        if(!leftStatus.treeBalanced){
-           return leftStatus;
+        if (!leftStatus.treeBalanced) {
+            return leftStatus;
         }
         BBStatus rightStatus = solveIt(root.right);
-        if(!rightStatus.treeBalanced){
+        if (!rightStatus.treeBalanced) {
             return rightStatus;
         }
 
         // Induction
-        int treeHeight = Math.max(leftStatus.treeHeight,rightStatus.treeHeight)+1;
-        boolean subTreeBalanced = Math.abs(leftStatus.treeHeight-rightStatus.treeHeight) <= 1;
+        int treeHeight = Math.max(leftStatus.treeHeight, rightStatus.treeHeight) + 1;
+        boolean subTreeBalanced = Math.abs(leftStatus.treeHeight - rightStatus.treeHeight) <= 1;
 
-        return new BBStatus(treeHeight,subTreeBalanced);
+        return new BBStatus(treeHeight, subTreeBalanced);
 
 
     }
 
-    private class BBStatus{
+    private class BBStatus {
         int treeHeight;
         boolean treeBalanced;
 
@@ -46,18 +71,18 @@ public class BalancedBTree {
 
     public static void main(String[] args) {
 
-        TreeNode ch9 = new TreeNode(9);
-        TreeNode ch8 = new TreeNode(8);
-        TreeNode ch7 = new TreeNode(7);
-        TreeNode ch6 = new TreeNode(6);
-        TreeNode ch5 = new TreeNode(5);
-        TreeNode ch4 = new TreeNode(4,ch8,ch9);
-        TreeNode ch3 = new TreeNode(3,ch6,ch7);
-        TreeNode ch2 = new TreeNode(2,ch4,ch5);
-        TreeNode ch1 = new TreeNode(1,ch2,ch3);
-
         BalancedBTree balancedBTree = new BalancedBTree();
-        System.out.println(balancedBTree.isBalanced(ch1));
+        System.out.println(" balancedBTree.isBalanced(\n" +
+                "                new TreeNode(3,\n" +
+                "                        new TreeNode(9, null , null),\n" +
+                "                        new TreeNode(20, null, new TreeNode(7,\n" +
+                "                                new TreeNode(15), new TreeNode(25)))))\n " +
+                "should be false  and the result is " +
+                balancedBTree.isBalanced(
+                new TreeNode(3,
+                        new TreeNode(9, null, null),
+                        new TreeNode(20, null, new TreeNode(7,
+                                new TreeNode(15), new TreeNode(25))))));
 
     }
 }
